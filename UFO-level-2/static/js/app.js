@@ -41,25 +41,34 @@ button.on("click", function(){
 
     // using the filter variables
     if (dateTime) {
-        filteredData = filteredData.filter( x => x.dateTime === dateTime);
+        filteredData = filteredData.filter( x => x.datetime === dateTime);
     }
-    if (dateTime) {
-        filteredData = filteredData.filter( x => x.dateTime === dateTime);
+    if (country) {
+        filteredData = filteredData.filter( x => x.country === country);
+    }
+    if (state) {
+        filteredData = filteredData.filter( x => x.state === state);
+    }
+    if (city) {
+        filteredData = filteredData.filter( x => x.city === city);
+    }
+    if (shape) {
+        filteredData = filteredData.filter( x => x.shape === shape);
     }
 
+    // creates the filtered data table
+    filteredData.forEach(function(ufoData){
+        console.log(ufoData);
+        var row = tbody.append("tr");
+        Object.entries(ufoData).forEach(function([key, value]){
+            console.log(key, value);
+            var cell = row.append("td");
+            cell.text(value);
+        });
+    });
 
-})
+});
 
-// click function
-function runClick(){
-    var date = d3.select("#datetime").property("value");
-    var filterData = tableData;
-    if(date){
-        filterData = filterData.filter(x => x.datetime === date);
-    }
-    console.log(filterData);
-    buildTable(filterData);
-}
 
 buildTable(tableData);
 
