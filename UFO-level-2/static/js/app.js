@@ -23,6 +23,33 @@ function buildTable(data){
     })
 }
 
+// button for multiper filters
+var button = d3.select("#filter-btn");
+button.on("click", function(){
+    tbody.html("");
+
+    // variables for filters
+    var dateTime = d3.select("#datetime").property("value");
+    var country = d3.select("#country").property("value");
+    var state = d3.select("#state").property("value");
+    var city = d3.select("#city").property("value");
+    var shape = d3.select("#shape").property("value");
+    var filteredData = tableData;
+    
+    // print input
+    console.log(city);
+
+    // using the filter variables
+    if (dateTime) {
+        filteredData = filteredData.filter( x => x.dateTime === dateTime);
+    }
+    if (dateTime) {
+        filteredData = filteredData.filter( x => x.dateTime === dateTime);
+    }
+
+
+})
+
 // click function
 function runClick(){
     var date = d3.select("#datetime").property("value");
@@ -34,11 +61,7 @@ function runClick(){
     buildTable(filterData);
 }
 
-// filter button for runClick
-d3.select("#filter-btn").on("click", runClick);
-
 buildTable(tableData);
-
 
 
 
